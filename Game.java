@@ -34,23 +34,54 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room plaza1, bar, iglesia, ayuntamiento, oficina, calle, plaza2, casa1;
+        Room casa2, patio, cobertizo, centroComercial, tienda1, tienda2, almacen;
+        Room pasilloSecreto, garita, calabozo, laboratorio;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        plaza1 = new Room("En la plaza mayor del pueblo");
+        bar = new Room("En el bar de donde te echaron");
+        iglesia = new Room("La iglesia del pueblo, huele a incienso");
+        ayuntamiento = new Room("En el holl del ayuntamiento");
+        oficina = new Room("El despacho del alcalde");
+        calle = new Room("Una callejuela");
+        plaza2 = new Room("Una plaza adoquinada");
+        casa1 = new Room("La casa de Pepa la frutera");
+        casa2 = new Room("La casa de Jose el pescadero");
+        patio = new Room("El patio trasero de Pepa");
+        cobertizo = new Room("Un cobertizo en el patio de Pepa");
+        centroComercial = new Room("Un centro comercial fantasma");
+        tienda1 = new Room("Una tienda abandonada de ropa");
+        tienda2 = new Room("Una tienda abandonada de pesca");
+        almacen = new Room("Un almacen lleno de ratas y humedad");
+        pasilloSecreto = new Room("Un pasillo oscuro y estrecho");
+        garita = new Room("La garita de seguridad");
+        calabozo = new Room("El calabozo del centro comercial");
+        laboratorio = new Room("Un extraño laboratorio en un centro comercial");
+        
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        plaza1.setExits(ayuntamiento, iglesia, bar, calle);
+        bar.setExits(plaza1, null, null, null);
+        iglesia.setExits(null, null, null, plaza1);
+        ayuntamiento.setExits(oficina, null, plaza1, null);
+        oficina.setExits(null, null, ayuntamiento, null);
+        calle.setExits(null, plaza1, null, plaza2);
+        plaza2.setExits(casa1, calle, centroComercial, casa2);
+        casa1.setExits(patio, null, plaza2, null);
+        casa2.setExits(null, plaza2, null, null);
+        patio.setExits(null, null, casa1, cobertizo);
+        cobertizo.setExits(null, patio, null, null);
+        centroComercial.setExits(plaza2, tienda2, almacen, tienda1);
+        tienda1.setExits(null, centroComercial, null, null);
+        tienda2.setExits(null, null, null, centroComercial);
+        almacen.setExits(centroComercial, pasilloSecreto, null,null);
+        pasilloSecreto.setExits(null, garita, null, almacen);
+        garita.setExits(calabozo, laboratorio, null, pasilloSecreto);
+        calabozo.setExits(null, null, garita, null);
+        laboratorio.setExits(null, null, null, garita);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = plaza1;  // start game outside
     }
 
     /**
