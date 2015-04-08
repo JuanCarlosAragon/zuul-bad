@@ -36,7 +36,7 @@ public class Game
     {
         Room plaza1, bar, iglesia, ayuntamiento, oficina, calle, plaza2, casa1;
         Room casa2, patio, cobertizo, centroComercial, tienda1, tienda2, almacen;
-        Room pasilloSecreto, garita, calabozo, laboratorio;
+        Room pasilloSecreto, garita, calabozo, laboratorio, agujero;
       
         // create the rooms
         plaza1 = new Room("En la plaza mayor del pueblo");
@@ -58,28 +58,30 @@ public class Game
         garita = new Room("La garita de seguridad");
         calabozo = new Room("El calabozo del centro comercial");
         laboratorio = new Room("Un extraño laboratorio en un centro comercial");
+        agujero = new Room("Un extraño tunel espacio/temporal");
         
         
         // initialise room exits
-        plaza1.setExits(ayuntamiento, iglesia, bar, calle);
-        bar.setExits(plaza1, null, null, null);
-        iglesia.setExits(null, null, null, plaza1);
-        ayuntamiento.setExits(oficina, null, plaza1, null);
-        oficina.setExits(null, null, ayuntamiento, null);
-        calle.setExits(null, plaza1, null, plaza2);
-        plaza2.setExits(casa1, calle, centroComercial, casa2);
-        casa1.setExits(patio, null, plaza2, null);
-        casa2.setExits(null, plaza2, null, null);
-        patio.setExits(null, null, casa1, cobertizo);
-        cobertizo.setExits(null, patio, null, null);
-        centroComercial.setExits(plaza2, tienda2, almacen, tienda1);
-        tienda1.setExits(null, centroComercial, null, null);
-        tienda2.setExits(null, null, null, centroComercial);
-        almacen.setExits(centroComercial, pasilloSecreto, null,null);
-        pasilloSecreto.setExits(null, garita, null, almacen);
-        garita.setExits(calabozo, laboratorio, null, pasilloSecreto);
-        calabozo.setExits(null, null, garita, null);
-        laboratorio.setExits(null, null, null, garita);
+        plaza1.setExits(ayuntamiento, iglesia, bar, calle, null);
+        bar.setExits(plaza1, null, null, null, null);
+        iglesia.setExits(null, null, null, plaza1, null);
+        ayuntamiento.setExits(oficina, null, plaza1, null, null);
+        oficina.setExits(null, null, ayuntamiento, null, null);
+        calle.setExits(null, plaza1, null, plaza2, null);
+        plaza2.setExits(casa1, calle, centroComercial, casa2, null);
+        casa1.setExits(patio, null, plaza2, null, null);
+        casa2.setExits(null, plaza2, null, null, null);
+        patio.setExits(null, null, casa1, cobertizo, null);
+        cobertizo.setExits(null, patio, null, null, null);
+        centroComercial.setExits(plaza2, tienda2, almacen, tienda1, null);
+        tienda1.setExits(null, centroComercial, null, null, null);
+        tienda2.setExits(null, null, null, centroComercial, null);
+        almacen.setExits(centroComercial, pasilloSecreto, null,null, null);
+        pasilloSecreto.setExits(null, garita, null, almacen, null);
+        garita.setExits(calabozo, laboratorio, null, pasilloSecreto, null);
+        calabozo.setExits(null, null, garita, null, null);
+        laboratorio.setExits(null, null, null, garita, agujero);
+        agujero.setExits(null,null,null,null,null);
 
         currentRoom = plaza1;  // start game outside
     }
@@ -187,6 +189,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southeast")){
+            nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -231,6 +236,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit != null){
+            System.out.print("southeast ");
         }
         System.out.println();
     }
