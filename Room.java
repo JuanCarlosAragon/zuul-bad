@@ -34,27 +34,12 @@ public class Room
     }
 
     /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
+     * Define an exit from this room.
+     * @param direction The direction o the exit.
+     * @param neighbor The room in the given direction.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
-    {
-        if(north != null)
-            exits.put("north", north);
-        if(east != null)
-            exits.put("east", east);
-        if(south != null)
-            exits.put("south", south);
-        if(west != null)
-            exits.put("west", west);
-        if(southEast != null)
-            exits.put("southeast", southEast);
-        if(northWest != null)
-            exits.put("northwest", northWest);
+    public void setExit(String direction, Room neighbor){
+        exits.put(direction, neighbor);
     }
 
     /**
@@ -81,18 +66,12 @@ public class Room
     public String getExitString(){
         String description = new String();
         description += "Exits: ";
-        if(exits.containsKey("north"))
-            description += "north ";
-        if(exits.containsKey("east"))
-             description += "east ";
-        if(exits.containsKey("south"))
-             description += "south ";
-        if(exits.containsKey("west"))
-             description += "west ";
-        if(exits.containsKey("southeast"))
-             description += "southeast ";
-        if(exits.containsKey("northwest"))
-            description += "northwest";
+        
+        String[] createdExits = new String[exits.size()];
+        exits.keySet().toArray(createdExits);
+        for(String direction : createdExits){
+            description += direction + " ";
+        }
              
         return description;
     }
