@@ -62,26 +62,26 @@ public class Game
         
         
         // initialise room exits
-        plaza1.setExits(ayuntamiento, iglesia, bar, calle, null);
-        bar.setExits(plaza1, null, null, null, null);
-        iglesia.setExits(null, null, null, plaza1, null);
-        ayuntamiento.setExits(oficina, null, plaza1, null, null);
-        oficina.setExits(null, null, ayuntamiento, null, null);
-        calle.setExits(null, plaza1, null, plaza2, null);
-        plaza2.setExits(casa1, calle, centroComercial, casa2, null);
-        casa1.setExits(patio, null, plaza2, null, null);
-        casa2.setExits(null, plaza2, null, null, null);
-        patio.setExits(null, null, casa1, cobertizo, null);
-        cobertizo.setExits(null, patio, null, null, null);
-        centroComercial.setExits(plaza2, tienda2, almacen, tienda1, null);
-        tienda1.setExits(null, centroComercial, null, null, null);
-        tienda2.setExits(null, null, null, centroComercial, null);
-        almacen.setExits(centroComercial, pasilloSecreto, null,null, null);
-        pasilloSecreto.setExits(null, garita, null, almacen, null);
-        garita.setExits(calabozo, laboratorio, null, pasilloSecreto, null);
-        calabozo.setExits(null, null, garita, null, null);
-        laboratorio.setExits(null, null, null, garita, agujero);
-        agujero.setExits(null,null,null,null,null);
+        plaza1.setExits(ayuntamiento, iglesia, bar, calle, null,null);
+        bar.setExits(plaza1, null, null, null, null,null);
+        iglesia.setExits(null, null, null, plaza1, null,null);
+        ayuntamiento.setExits(oficina, null, plaza1, null, null,null);
+        oficina.setExits(null, null, ayuntamiento, null, null,null);
+        calle.setExits(null, plaza1, null, plaza2, null,null);
+        plaza2.setExits(casa1, calle, centroComercial, casa2, null,null);
+        casa1.setExits(patio, null, plaza2, null, null,null);
+        casa2.setExits(null, plaza2, null, null, null,null);
+        patio.setExits(null, null, casa1, cobertizo, null,null);
+        cobertizo.setExits(null, patio, null, null, null,null);
+        centroComercial.setExits(plaza2, tienda2, almacen, tienda1, null,null);
+        tienda1.setExits(null, centroComercial, null, null, null,null);
+        tienda2.setExits(null, null, null, centroComercial, null,null);
+        almacen.setExits(centroComercial, pasilloSecreto, null,null, null,null);
+        pasilloSecreto.setExits(null, garita, null, almacen, null,null);
+        garita.setExits(calabozo, laboratorio, null, pasilloSecreto, null,null);
+        calabozo.setExits(null, null, garita, null, null,null);
+        laboratorio.setExits(null, null, null, garita, agujero,null);
+        agujero.setExits(null,null,null,null,null,laboratorio);
 
         currentRoom = plaza1;  // start game outside
     }
