@@ -39,11 +39,11 @@ public class Game
         Room pasilloSecreto, garita, calabozo, laboratorio, agujero;
       
         // create the rooms
-        plaza1 = new Room("En la plaza mayor del pueblo");
-        bar = new Room("En el bar de donde te echaron");
+        plaza1 = new Room("la plaza mayor del pueblo");
+        bar = new Room("el bar de donde te echaron");
         iglesia = new Room("La iglesia del pueblo, huele a incienso");
-        ayuntamiento = new Room("En el holl del ayuntamiento");
-        oficina = new Room("El despacho del alcalde");
+        ayuntamiento = new Room("el holl del ayuntamiento");
+        oficina = new Room("el despacho del alcalde");
         calle = new Room("Una callejuela");
         plaza2 = new Room("Una plaza adoquinada");
         casa1 = new Room("La casa de Pepa la frutera");
@@ -245,8 +245,6 @@ public class Game
      * en el que está el personaje.
      */
     private void printLocationInfo(){
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print(currentRoom.getExitString());
-        System.out.println();
+        System.out.println(currentRoom.getLongDescription());
     }
 }
