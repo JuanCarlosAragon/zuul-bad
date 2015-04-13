@@ -38,4 +38,16 @@ public class CommandWords
         // if we get here, the string was not found in the commands
         return false;
     }
+    
+    /**
+     * Print all valid commands to System.out
+     */
+    public void showAll(){
+        String toPrint = new String();
+        for (String command : validCommands){
+            toPrint += command;
+            toPrint += " ";
+        }
+        System.out.println(toPrint);
+    }
 }
