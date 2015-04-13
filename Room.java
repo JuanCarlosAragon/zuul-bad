@@ -20,6 +20,10 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    
+    //Atributos del objeto de la habitación
+    private String objectDescription;
+    private double objectWeight;
 
     /**
      * Create a room described "description". Initially, it has
@@ -82,6 +86,30 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return "Estas en " + description + "\n" + getExitString();
+        return "Estas en " + description + "\n" + objectToString() + getExitString();
+    }
+    
+    /**
+     * Set the object in the room
+     */
+    public void setObject(String description, double weight){
+        objectDescription = description;
+        objectWeight = weight;
+    }
+    
+    /**
+     * Return a String about the object if these exist else return a information about that
+     * 
+     * @return String about the object inside the room
+     */
+    public String objectToString(){
+        String toString = null;
+        if(objectDescription != null){
+            toString = "Hay un objeto en esta habitación: \n" + objectDescription + "\n Pesa: " + objectWeight + " Kg.\n";
+        }
+        else{
+            toString = "No hay ningún objeto en esta habitación\n";
+        }
+        return toString;
     }
 }

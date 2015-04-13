@@ -119,6 +119,11 @@ public class Game
         laboratorio.setExit("southeast", agujero);
 
         agujero.setExit("northwest", laboratorio);
+        
+        plaza1.setObject("Una fuente", 150.5);
+        garita.setObject("Una pistola", 0.8);
+        cobertizo.setObject("Una nave espacial", 340);
+        calle.setObject("Un borracho", 80);
 
         currentRoom = plaza1;  // start game outside
     }
