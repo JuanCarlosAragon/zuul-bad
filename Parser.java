@@ -64,11 +64,9 @@ public class Parser
     }
     
     /**
-     * Return de commandWords atribute
-     * 
-     * @return the commandWords atribute
+     * Print all commands by system.out
      */
-    public CommandWords getCommands(){
-        return commands;
+    public void printAllCommands(){
+        commands.showAll();
     }
 }
