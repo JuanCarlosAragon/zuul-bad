@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -22,8 +23,7 @@ public class Room
     private HashMap<String, Room> exits;
     
     //Atributos del objeto de la habitación
-    private String objectDescription;
-    private double objectWeight;
+    private ArrayList<Item> objetos;
 
     /**
      * Create a room described "description". Initially, it has
@@ -35,6 +35,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        objetos = new ArrayList<>();
     }
 
     /**
@@ -86,30 +87,28 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return "Estas en " + description + "\n" + objectToString() + getExitString();
+        String toReturn = new String();
+        toReturn = "Estas en " + description + "\n";
+        if(objetos.isEmpty()){
+            toReturn += "No hay objetos en esta habitación \n";
+        }
+        else{
+            toReturn += "Hay " + objetos.size() 
+                        + " objetos en este sitio: \n";
+            for(Item objeto : objetos){
+                toReturn += "----------------------\n";
+                toReturn += objeto.getInfo();
+                toReturn += "----------------------\n";
+            }
+        }
+        toReturn +=  getExitString();
+        return toReturn;
     }
     
     /**
      * Set the object in the room
      */
-    public void setObject(String description, double weight){
-        objectDescription = description;
-        objectWeight = weight;
-    }
-    
-    /**
-     * Return a String about the object if these exist else return a information about that
-     * 
-     * @return String about the object inside the room
-     */
-    public String objectToString(){
-        String toString = null;
-        if(objectDescription != null){
-            toString = "Hay un objeto en esta habitación: \n" + objectDescription + "\n Pesa: " + objectWeight + " Kg.\n";
-        }
-        else{
-            toString = "No hay ningún objeto en esta habitación\n";
-        }
-        return toString;
+    public void addItem(String description, double weight){
+        objetos.add(new Item(description, weight));
     }
 }
