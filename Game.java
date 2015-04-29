@@ -16,10 +16,10 @@ import java.util.Stack;
  * @version 2011.07.31
  */
 
-public class Game 
+public class Game
 {
     private Parser parser;
-    private Room currentRoom;
+    protected Room currentRoom;
     
     //La habitación de donde venimos
     private Stack<Room> roomHistorial;
@@ -27,17 +27,17 @@ public class Game
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() 
+    public Game () 
     {
         createRooms();
         parser = new Parser();
         roomHistorial = new Stack<>();
     }
-
+    
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    protected void createRooms()
     {
         Room plaza1, bar, iglesia, ayuntamiento, oficina, calle, plaza2, casa1;
         Room casa2, patio, cobertizo, centroComercial, tienda1, tienda2, almacen;
@@ -155,7 +155,7 @@ public class Game
     /**
      * Print out the opening message for the player.
      */
-    private void printWelcome()
+    protected void printWelcome()
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
@@ -170,7 +170,7 @@ public class Game
      * @param command The command to be processed.
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand(Command command) 
+    protected boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
 
@@ -209,7 +209,7 @@ public class Game
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
      */
-    private void printHelp() 
+    protected void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -222,7 +222,7 @@ public class Game
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
+    protected void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -252,7 +252,7 @@ public class Game
      * whether we really quit the game.
      * @return true, if this command quits the game, false otherwise.
      */
-    private boolean quit(Command command) 
+    protected boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -267,13 +267,13 @@ public class Game
      * Imprime por pantalla la información y salidas disponibles del lugar 
      * en el que está el personaje.
      */
-    private void printLocationInfo(){
+    protected void printLocationInfo(){
         System.out.println(currentRoom.getLongDescription());
     }
     /**
      * Hace retroceder al personaje a la habitación anterior
      */
-    private void backInstruction(){
+    protected void backInstruction(){
         if(!roomHistorial.isEmpty()){
                 System.out.println("You go back!\n");
                 currentRoom = roomHistorial.pop();
