@@ -8,11 +8,15 @@
 public class Item
 {
    private String description;
+   private String clave;
+   private int precio;
    private double weight;
    
-   public Item(String description, double weight){
+   public Item(String clave, String description, double weight, int precio){
        this.description = description;
        this.weight = weight;
+       this.clave = clave;
+       this.precio = precio;
     }
     
    public String getDescription(){
@@ -24,6 +28,17 @@ public class Item
     }
     
    public String getInfo(){
-       return description + "\nPeso: " + weight + "\n";
+       String info = clave + "\n" + description + "\nPeso: " + weight + "\n";
+       if(precio != 0){
+           info += precio + "€\n";
+        }
+       return info;
+    }
+   
+   public String getClave(){
+       return clave;
+    }
+   public int getPrecio(){
+       return precio;
     }
 }

@@ -24,6 +24,7 @@ public class Room
     
     //Atributos del objeto de la habitación
     private ArrayList<Item> objetos;
+    private ArrayList<Person> personas;
 
     /**
      * Create a room described "description". Initially, it has
@@ -36,6 +37,7 @@ public class Room
         this.description = description;
         exits = new HashMap<>();
         objetos = new ArrayList<>();
+        personas = new ArrayList<>();
     }
 
     /**
@@ -70,7 +72,7 @@ public class Room
      */
     public String getExitString(){
         String description = new String();
-        description += "Exits: ";
+        description += "Salidas: ";
         
         String[] createdExits = new String[exits.size()];
         exits.keySet().toArray(createdExits);
@@ -96,9 +98,21 @@ public class Room
             toReturn += "Hay " + objetos.size() 
                         + " objetos en este sitio: \n";
             for(Item objeto : objetos){
-                toReturn += "----------------------\n";
-                toReturn += objeto.getInfo();
-                toReturn += "----------------------\n";
+                try{
+                    toReturn += "----------------------\n";
+                    toReturn += objeto.getInfo();
+                    toReturn += "----------------------\n";
+                }
+                catch(Exception ex){}
+            }
+            toReturn += "Hay " + personas.size() + " personas en este sitio: \n";
+            for(Person persona : personas){
+                try{
+                    toReturn += "----------------------\n";
+                    toReturn += persona.getInfo();
+                    toReturn += "----------------------\n";
+                }
+                catch(Exception ex){}
             }
         }
         toReturn +=  getExitString();
@@ -108,7 +122,48 @@ public class Room
     /**
      * Set the object in the room
      */
-    public void addItem(String description, double weight){
-        objetos.add(new Item(description, weight));
+    public void addItem(String clave, String description, double weight, int precio){
+        objetos.add(new Item(clave, description, weight, precio));
+    }
+    public void addItem(Item item){
+        objetos.add(item);
+    }
+    
+    /**
+     * Añade personas a los emplazamientos
+     */
+    public void addPerson(String nombre, String descripcion, int precio){
+        personas.add(new Person(nombre, descripcion, precio));
+    }
+    public void addPerson(Person persona){
+        personas.add(persona);
+    }
+    /**
+     * Quita un objeto de la habitacion
+     * 
+     */
+    public void quitItem(String clave){
+        Item found = null;
+        for(Item item : objetos){
+           if(item.getClave().equals(clave)){
+               found = item;
+           }
+        }
+        try{
+            objetos.remove(found);
+        }
+        catch(Exception ex){}
+    }
+    /**
+     * Devuelve todos los objetos que tiene la habitacion
+     */
+    public ArrayList<Item> getItems(){
+        return objetos;
+    }
+    /**
+     * Devuelve las personas de una habitacion
+     */
+    public ArrayList<Person> getPersonas(){
+        return personas;
     }
 }
